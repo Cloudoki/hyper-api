@@ -7,5 +7,20 @@
             "passphrase": "cloudoki",
             "ca": "Cloudoki/donderstarter-api/ssl/ca/cacert.pem"
         }
+    },
+    "server": {
+        "routes": {
+            "cors": {
+                "origin": ["*"],
+                "additionalHeaders": [
+                    "Accept",
+                    "Authorization",
+                    "Content-Type",
+                    "If-None-Match",
+                    "Accept-language"
+                ]
+            }
+        }
     }
+
 }

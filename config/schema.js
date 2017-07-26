@@ -25,6 +25,20 @@ const schema = {
             format: 'port',
             default: 3000,
             env: 'HYPER_API_PORT'
+        },
+        routes: {
+            cors: {
+                origin: {
+                    doc: 'Server default CORS origin',
+                    format: Array,
+                    env: 'HYPER_API_DEFAULT_CORS_ORIGINS'
+                },
+                additionalHeaders: {
+                    doc: 'Server default CORS headers',
+                    format: Array,
+                    env: 'HYPER_API_DEFAULT_CORS_HEADERS'
+                }
+            }
         }
     },
     queue: {
@@ -72,6 +86,20 @@ const schema = {
             format: ['trace', 'debug', 'info', 'warn', 'error', 'fatal'],
             default: 'trace'
         }
+    },
+    plugins: {
+        doc: 'Plugins to load',
+        format: Array,
+        env: 'HYPER_API_ENABLED_PLUGINS',
+        default: [
+            'lib/plugins/users',
+            'lib/plugins/accounts',
+            'lib/plugins/roles',
+            'lib/plugins/permissions',
+            'inert',
+            'vision',
+            'lib/plugins/swagger'
+        ]
     }
 };
 

@@ -2,88 +2,30 @@
 
 const hapi = require('hapi');
 const config = require('config');
-const log = require('util/log');
-
-const hapiSwagger = require('hapi-swagger');
-const mq = require('hyper-queue');
-const inert = require('inert');
-const vision = require('vision');
-
-
-const pkgJson = require('./package');
+const log = require('util/logger');
 
 log.fatal('##### Starting Hyper API #####');
 
-mq.logger(log);
+// Create the Hapi Server and load the plugins
+const server = new hapi.Server();
+server.connection(config.get('server'));
 
-mq.broker(config.queue.uri, config.queue.options, config.queue.reconnect);
+let plugins = config.get('plugins').map(plugin => require(plugin));
 
-mq.connect();
-
-// Create the Hapi Server and configure
-// the static file server part
-
-const server = new hapi.Server()
-
-server.connection({
-    port: config.port,
-    routes: {
-        cors: {
-            origin: ['*'],
-            additionalHeaders: ["Accept", "Authorization", "Content-Type", "If-None-Match", "Accept-language"]
-        }
+server.register(plugins, (err) => {
+    if (err) {
+        log.fatal(err, 'Hapi failed to register plugins');
+        throw (err);
     }
-})
 
-let plugins = [
-    // Register the users handling plugin
-    {
-        register: require('./lib/plugins/users/index.js'),
-        routes: {
-            prefix: '/api/v1'
-        }
-    },
-    {
-        register: require('./lib/plugins/accounts/index.js'),
-        routes: {
-            prefix: '/api/v1'
-        }
-    },
-    {
-        register: require('./lib/plugins/roles/index.js'),
-        routes: {
-            prefix: '/api/v1'
-        }
-    },
-    {
-        register: require('./lib/plugins/permissions/index.js'),
-        routes: {
-            prefix: '/api/v1'
-        }
-    },
-    inert,
-    vision
-]
+    log.info('All plugins were loaded successfuly');
 
-if (config.swagger.enabled) {
-    // Only show the swagger docs (at `/documentation` in development)
-    plugins.push({
-        register: hapiSwagger,
-        options: {
-            info: {
-                title: 'Hyper API Documentation',
-                version: pkgJson.version
-            }
-        }
-    })
-}
-
-server.register(plugins, () => {
-    // Actually start the server (start listening for incoming requests)
     server.start((err) => {
         if (err) {
+            log.fatal(err, 'Failed to start server');
             throw err;
         }
-        log.info(`Server running at: ${server.info.uri}`);
-    })
-})
+
+        log.info('Hyper-API is up and running on port %s', config.get('server').port);
+    });
+});
