@@ -1,0 +1,11 @@
+{
+    "queue": {
+        "uri": "amqps://mq.dev.cloudoki.com",
+        "options": {
+            "crt": "Cloudoki/donderstarter-api/ssl/client/cert.pem",
+            "key": "Cloudoki/donderstarter-api/ssl/client/key.pem",
+            "passphrase": "cloudoki",
+            "ca": "Cloudoki/donderstarter-api/ssl/ca/cacert.pem"
+        }
+    }
+}

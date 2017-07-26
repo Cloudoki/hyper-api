@@ -1,13 +1,15 @@
 'use strict'
 
 const hapi = require('hapi');
+const config = require('config');
+const log = require('util/log');
+
 const hapiSwagger = require('hapi-swagger');
 const mq = require('hyper-queue');
 const inert = require('inert');
 const vision = require('vision');
 
-const config = require('config');
-const log = require('log');
+
 const pkgJson = require('./package');
 
 log.fatal('##### Starting Hyper API #####');

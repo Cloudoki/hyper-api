@@ -1,22 +1,24 @@
 {
-  "name": "hyper-api",
-  "version": "1.0.0",
-  "description": "hyper api",
-  "main": "index.js",
-  "scripts": {
-    "start": "NODE_PATH=. node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "boom": "^5.2.0",
-    "bunyan": "^1.8.10",
-    "hapi": "^16.5.0",
-    "hapi-swagger": "^7.7.0",
-    "hyper-queue": "git+https://github.com/Cloudoki/hyper-queue.git",
-    "inert": "^4.2.1",
-    "joi": "^10.6.0",
-    "vision": "^4.1.1"
-  }
+    "name": "hyper-api",
+    "version": "1.0.0",
+    "description": "hyper api",
+    "main": "index.js",
+    "scripts": {
+        "start": "NODE_PATH=. node index.js",
+        "debug": "NODE_PATH=. node index.js | bunyan",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "boom": "^5.2.0",
+        "bunyan": "^1.8.10",
+        "convict": "^4.0.0",
+        "hapi": "^16.5.0",
+        "hapi-swagger": "^7.7.0",
+        "hyper-queue": "git+https://github.com/Cloudoki/hyper-queue.git",
+        "inert": "^4.2.1",
+        "joi": "^10.6.0",
+        "vision": "^4.1.1"
+    }
 }
