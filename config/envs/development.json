@@ -1,13 +1,4 @@
 {
-    "queue": {
-        "uri": "amqps://mq.dev.cloudoki.com",
-        "options": {
-            "crt": "Cloudoki/donderstarter-api/ssl/client/cert.pem",
-            "key": "Cloudoki/donderstarter-api/ssl/client/key.pem",
-            "passphrase": "cloudoki",
-            "ca": "Cloudoki/donderstarter-api/ssl/ca/cacert.pem"
-        }
-    },
     "server": {
         "routes": {
             "cors": {
@@ -21,6 +12,20 @@
                 ]
             }
         }
+    },
+    "seneca": {
+        "options": {
+            "timeout": 60000,
+            "log": {
+                "level": "warn+"
+            },
+            "debug": {
+                "short_logs": true
+            }
+        },
+        "client": {
+            "type": "amqp",
+            "url": "amqp://mq.dev.cloudoki.com:5672"
+        }
     }
-
 }

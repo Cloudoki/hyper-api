@@ -11,7 +11,7 @@ const schema = {
         doc: 'The public http address.',
         format: String,
         default: 'http://localhost/',
-        env: 'HYPER_API_PUBLIC_HOST',
+        env: 'HYPER_API_PUBLIC_HOST'
     },
     server: {
         host: {
@@ -41,38 +41,44 @@ const schema = {
             }
         }
     },
-    queue: {
-        uri: {
-            doc: 'Rabbit broker connection string',
-            format: String,
-            env: 'HYPER_API_RABBIT_CONNECTION_STRING'
-        },
-        reconnectTime: {
-            doc: 'Rabbit broker reconnect timer',
-            format: 'int',
-            default: 3000
-        },
+    seneca: {
         options: {
-            cert: {
-                doc: 'Path to SSL key',
+            doc: 'Seneca default options',
+            format: Object,
+            env: 'HYPER_API_SENECA_OPTS',
+            default: 60000
+        },
+
+        client: {
+            type: {
+                doc: 'Seneca CORS origin',
                 format: String,
-                env: 'HYPER_API_RABBIT_SSL_CERT'
+                env: 'HYPER_API_SENECA_CLIENT_TYPE',
+                default: 'amqp'
             },
-            key: {
-                doc: 'Rabbit connection key',
+            url: {
+                doc: 'Seneca broker connection url',
                 format: String,
-                env: 'HYPER_API_RABBIT_SSL_KEY'
+                env: 'HYPER_API_BROKER_URL'
             },
-            passphrase: {
-                doc: 'RAbbit connection SSL passpharase',
-                format: String,
-                env: 'HYPER_API_RABBIT_SSL_PASSPHRASE'
-            },
-            ca: {
-                doc: 'Path to root certificate authority file',
-                format: String,
-                env: 'HYPER_API_RABBIT_SSL_CA'
+            pins: {
+                doc: 'Seneca services pins',
+                format: Array,
+                env: 'HYPER_API_ENABLED_PINS',
+                default: [
+                    'role:account',
+                    'role:permission',
+                    'role:role',
+                    'role:user',
+                    'role:verification'
+                ]
             }
+        },
+        rabbitOptions: {
+            doc: 'Seneca Rabbit connector default options',
+            format: Object,
+            env: 'HYPER_API_SENECA_RABBIT_CONNECTOR_OPTS',
+            default: {}
         }
     },
     logger: {
@@ -92,13 +98,14 @@ const schema = {
         format: Array,
         env: 'HYPER_API_ENABLED_PLUGINS',
         default: [
-            'lib/plugins/users',
-            'lib/plugins/accounts',
-            'lib/plugins/roles',
-            'lib/plugins/permissions',
+            //        'lib/plugins/users',
+            //        'lib/plugins/accounts',
+            //        'lib/plugins/roles',
+            //        'lib/plugins/permissions',
             'inert',
             'vision',
-            'lib/plugins/swagger'
+            'lib/plugins/internal/services',
+            'lib/plugins/internal/swagger'
         ]
     }
 };
