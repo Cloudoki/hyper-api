@@ -17,7 +17,7 @@
         "options": {
             "timeout": 60000,
             "log": {
-                "level": "warn+"
+                "level": "fatal"
             },
             "debug": {
                 "short_logs": true
