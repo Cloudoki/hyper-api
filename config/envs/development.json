@@ -25,7 +25,7 @@
         },
         "client": {
             "type": "amqp",
-            "url": "amqp://mq.dev.cloudoki.com:5672"
+            "url": "amqp://localhost:5672/"
         }
     }
 }
