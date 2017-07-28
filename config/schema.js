@@ -98,7 +98,7 @@ const schema = {
         format: Array,
         env: 'HYPER_API_ENABLED_PLUGINS',
         default: [
-            //        'lib/plugins/users',
+            'lib/plugins/users',
             //        'lib/plugins/accounts',
             //        'lib/plugins/roles',
             //        'lib/plugins/permissions',
