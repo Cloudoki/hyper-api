@@ -46,7 +46,7 @@ const schema = {
             doc: 'Seneca default options',
             format: Object,
             env: 'HYPER_API_SENECA_OPTS',
-            default: 60000
+            default: {}
         },
 
         client: {
@@ -104,7 +104,8 @@ const schema = {
             'inert',
             'vision',
             'lib/plugins/internal/services',
-            'lib/plugins/internal/swagger'
+            'lib/plugins/internal/swagger',
+            'lib/plugins/internal/good'
         ]
     }
 };
