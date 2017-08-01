@@ -69,8 +69,7 @@ const schema = {
                     'role:account',
                     'role:permission',
                     'role:role',
-                    'role:user',
-                    'role:verification'
+                    'role:user'
                 ]
             }
         },
@@ -100,8 +99,8 @@ const schema = {
         default: [
             'lib/plugins/users',
             'lib/plugins/accounts',
-            //        'lib/plugins/roles',
-            //        'lib/plugins/permissions',
+            'lib/plugins/roles',
+            'lib/plugins/permissions',
             'inert',
             'vision',
             'lib/plugins/internal/services',
