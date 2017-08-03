@@ -31,22 +31,72 @@ const schema = {
                 origin: {
                     doc: 'Server default CORS origin',
                     format: Array,
-                    env: 'HYPER_API_DEFAULT_CORS_ORIGINS'
+                    env: 'HYPER_API_DEFAULT_CORS_ORIGINS',
+                    default: []
                 },
                 additionalHeaders: {
                     doc: 'Server default CORS headers',
                     format: Array,
-                    env: 'HYPER_API_DEFAULT_CORS_HEADERS'
+                    env: 'HYPER_API_DEFAULT_CORS_HEADERS',
+                    default: []
                 }
             }
         }
     },
     seneca: {
         options: {
-            doc: 'Seneca default options',
-            format: Object,
-            env: 'HYPER_API_SENECA_OPTS',
-            default: {}
+            debug: {
+                deprecation: {
+                    doc: 'Seneca debugging option, warn for deprecations',
+                    format: Boolean,
+                    default: true
+                },
+                undead: {
+                    doc: 'Seneca debugging option, warn for deprecations',
+                    format: Boolean,
+                    default: false
+                },
+                short_logs: {
+                    doc: 'Seneca debugging option, internal log format',
+                    format: Boolean,
+                    default: true
+                }
+            },
+            log: {
+                level: {
+                    doc: 'Internal Seneca logger level',
+                    format: String,
+                    default: 'fatal'
+                }
+            },
+            plugin: {
+                doc: 'Seneca Plugin namespace options',
+                format: Object,
+                env: 'HYPER_API_SENECA_PLUGIN_OPTS',
+                default: {}
+            },
+            strict: {
+                result: {
+                    doc: 'The result provided by an action must be an Object or an Array that can be fully serialized to JSON.When false scalar values (Strings, Numbers, etc) are permitted. Use only to keep old code working while you migrate.',
+                    format: Boolean,
+                    env: 'HYPER_API_SENECA_OPTS_STRICT_RESULT',
+                    default: true
+                }
+            },
+            tag: {
+                doc: 'Seneca Plugin namespace options',
+                format: String,
+                env: 'HYPER_API_SENECA_PLUGIN_OPTS'
+            },
+            test: {
+
+            },
+            timeout: {
+                doc: 'Seneca default timeout options',
+                format: 'int',
+                env: 'HYPER_API_SENECA_OPTS_TIMEOUT',
+                default: 5000
+            }
         },
 
         client: {
@@ -59,7 +109,8 @@ const schema = {
             url: {
                 doc: 'Seneca broker connection url',
                 format: String,
-                env: 'HYPER_API_BROKER_URL'
+                env: 'HYPER_API_BROKER_URL',
+                default: 'amqp://localhost/'
             },
             pins: {
                 doc: 'Seneca services pins',
@@ -97,10 +148,12 @@ const schema = {
         format: Array,
         env: 'HYPER_API_ENABLED_PLUGINS',
         default: [
+            'hapi-auth-bearer-token',
+            'lib/plugins/auth',
+            'lib/plugins/permissions',
             'lib/plugins/users',
             'lib/plugins/accounts',
             'lib/plugins/roles',
-            'lib/plugins/permissions',
             'inert',
             'vision',
             'lib/plugins/internal/services',
