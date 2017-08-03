@@ -148,9 +148,11 @@ const schema = {
         format: Array,
         env: 'HYPER_API_ENABLED_PLUGINS',
         default: [
+            'hapi-auth-cookie',
             'hapi-auth-bearer-token',
             'lib/plugins/auth',
             'lib/plugins/permissions',
+            'lib/plugins/oauth2',
             'lib/plugins/users',
             'lib/plugins/superadmin',
             'lib/plugins/accounts',
