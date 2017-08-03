@@ -152,6 +152,7 @@ const schema = {
             'lib/plugins/auth',
             'lib/plugins/permissions',
             'lib/plugins/users',
+            'lib/plugins/superadmin',
             'lib/plugins/accounts',
             'lib/plugins/roles',
             'inert',
