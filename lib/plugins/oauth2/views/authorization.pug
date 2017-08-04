@@ -14,4 +14,5 @@ html
         input(type='submit', value='Authorize')
 
     form(name='authorize', action='/oauth2/home', method='get')
+        input(type='hidden', name='message')
         input(type='submit', value='Reject')

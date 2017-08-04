@@ -122,7 +122,8 @@ const schema = {
                     'role:role',
                     'role:user',
                     'role:authorization',
-                    'role:oauthClient'
+                    'role:oauthClient',
+                    'role:oauthFlow'
                 ]
             }
         },
