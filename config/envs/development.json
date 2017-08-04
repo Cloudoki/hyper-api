@@ -25,13 +25,7 @@
         },
         "client": {
             "type": "amqp",
-            "url": "amqp://178.62.251.26:5672/",
-            "pins": [
-                "role:account",
-                "role:permission",
-                "role:role",
-                "role:user"
-            ]
+            "url": "amqp://178.62.251.26:5672/"
         },
         "rabbitOptions": {}
     }

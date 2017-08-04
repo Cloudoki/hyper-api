@@ -1,0 +1,17 @@
+html
+  head
+    title #{title}
+  body
+    h1 Authorize 
+    hr
+    b Note: At this point the user has already been logged-in.
+    hr
+    p This application would like to have authorization to access your data.
+    form(name='authorize', action='/oauth2/authorize', method='post')
+        input(type='hidden', name='client_id')
+        input(type='hidden', name='response_type')
+        input(type='hidden', name='scope')
+        input(type='submit', value='Authorize')
+
+    form(name='authorize', action='/oauth2/home', method='get')
+        input(type='submit', value='Reject')

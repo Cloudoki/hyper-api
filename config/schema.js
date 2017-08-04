@@ -120,7 +120,9 @@ const schema = {
                     'role:account',
                     'role:permission',
                     'role:role',
-                    'role:user'
+                    'role:user',
+                    'role:authorization',
+                    'role:oauthClient'
                 ]
             }
         },
@@ -148,6 +150,8 @@ const schema = {
         format: Array,
         env: 'HYPER_API_ENABLED_PLUGINS',
         default: [
+            'inert',
+            'vision',
             'hapi-auth-cookie',
             'hapi-auth-bearer-token',
             'lib/plugins/auth',
@@ -157,8 +161,6 @@ const schema = {
             'lib/plugins/superadmin',
             'lib/plugins/accounts',
             'lib/plugins/roles',
-            'inert',
-            'vision',
             'lib/plugins/internal/services',
             'lib/plugins/internal/swagger',
             'lib/plugins/internal/good'
