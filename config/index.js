@@ -15,8 +15,8 @@ if (env !== 'production') {
 }
 
 // Perform validation
-config.validate({
-    allowed: 'warn'
-});
+// config.validate({
+//     allowed: 'warn'
+// });
 
 module.exports = config;

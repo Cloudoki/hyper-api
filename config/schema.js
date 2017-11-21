@@ -10,7 +10,7 @@ const schema = {
     publicHost: {
         doc: 'The public http address.',
         format: String,
-        default: 'http://localhost/',
+        default: 'http://localhost:3000/',
         env: 'HYPER_API_PUBLIC_HOST'
     },
     server: {
@@ -144,6 +144,40 @@ const schema = {
             doc: 'Logger level',
             format: ['trace', 'debug', 'info', 'warn', 'error', 'fatal'],
             default: 'trace'
+        }
+    },
+    mailer: {
+        host: {
+          doc: 'The mail service host',
+          format: String,
+          env: 'HYPER_API_MAILER_HOST',
+          default: 'smtp.ethereal.email'
+        },
+        port: {
+          doc:'The mail service port.',
+          format: Number,
+          env: 'HYPER_API_MAILER_PORT',
+          default: 587
+        },
+        secure: {
+          doc:'Is the connection TLS',
+          format: Boolean,
+          env: 'HYPER_API_MAILER_SECURE',
+          default: false
+        },
+        auth: {
+          user: {
+            doc: 'The mail service account username.',
+            format: String,
+            env: 'HYPER_API_MAILER_USER',
+            default: 'pyui3s3qr7edjuwr@ethereal.email'
+          },
+          pass: {
+            doc: 'The mail service account password.',
+            format: String,
+            env: 'HYPER_API_MAILER_PASSWORD',
+            default: 'rAbCYtUEbzZcdEzTeg'
+          }
         }
     },
     plugins: {
