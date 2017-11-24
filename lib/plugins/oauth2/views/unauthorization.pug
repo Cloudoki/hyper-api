@@ -1,0 +1,15 @@
+html
+  head
+    title #{title}
+    style
+      include css/normalize.css
+      include css/skeleton.css
+      include css/style.css
+  body
+    div(class='container panel')
+      h1 Unauthorize
+      hr
+      p Unauthorize previously authorized client.
+      form(name='authorize', action=path, method='post')
+          input(type='submit', value='Unauthorize')
+          input(type='hidden', name='client_id' value=client_id)
